@@ -80,10 +80,27 @@ public class Towers {
             arr[i] = reader.nextInt();
         }
 
+        //TLE - CSES system didn't get it. But you can write same code in C++ and you will solve it:)
         List<Integer> towers = new LinkedList<>();
-        towers.add(arr[0]);
-        for (int i = 1; i < n; i++) {
-            
+        for (int i = 0; i < n; i++) {
+            int a = 0, b = towers.size();
+            while (a < b) {
+                int k = (a + b)/2;
+                if (arr[i] >= towers.get(k)) {
+                    a = k + 1;
+                }
+                else {
+                    b = k;
+                }
+            }
+
+            if (a >= towers.size()) {
+                towers.add(arr[i]);
+            }
+            else {
+                towers.set(a, arr[i]);
+            }
+
         }
 
         System.out.println(towers.size());
